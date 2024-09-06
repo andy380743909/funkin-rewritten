@@ -52,6 +52,36 @@ if love.system.getOS() == "NX" then
 		},
 		joystick = love.joystick.getJoysticks()[1]
 	}
+elseif love.system.getOS() == "iOS" then
+	if settings.dfjk then
+		gameLeft = {"key:d", "key:left", "axis:triggerleft+", "axis:leftx-", "axis:rightx-", "button:dpleft", "button:x"}
+		gameDown = {"key:f", "key:down", "axis:lefty+", "axis:righty+", "button:leftshoulder", "button:dpdown", "button:a"}
+		gameUp = {"key:j", "key:up", "axis:lefty-", "axis:righty-", "button:rightshoulder", "button:dpup", "button:y"}
+		gameRight = {"key:k", "key:right", "axis:triggerright+", "axis:leftx+", "axis:rightx+", "button:dpright", "button:b"}
+	else
+		gameLeft = {"key:a", "key:left", "axis:triggerleft+", "axis:leftx-", "axis:rightx-", "button:dpleft", "button:x"}
+		gameDown = {"key:s", "key:down", "axis:lefty+", "axis:righty+", "button:leftshoulder", "button:dpdown", "button:a"}
+		gameUp = {"key:w", "key:up", "axis:lefty-", "axis:righty-", "button:rightshoulder", "button:dpup", "button:y"}
+		gameRight = {"key:d", "key:right", "axis:triggerright+", "axis:leftx+", "axis:rightx+", "button:dpright", "button:b"}
+	end
+
+	return baton.new {
+		controls = {
+			left = {"key:left", "axis:leftx-", "button:dpleft"},
+			down = {"key:down", "axis:lefty+", "button:dpdown"},
+			up = {"key:up", "axis:lefty-", "button:dpup"},
+			right = {"key:right", "axis:leftx+", "button:dpright"},
+			confirm = {"key:return", "button:a"},
+			back = {"key:escape", "button:b"},
+
+			gameLeft = gameLeft,
+			gameDown = gameDown,
+			gameUp = gameUp,
+			gameRight = gameRight,
+			gameBack = {"key:escape", "button:start"},
+		},
+		joystick = love.joystick.getJoysticks()[2]
+}
 else
 	if settings.dfjk then
 		gameLeft = {"key:d", "key:left", "axis:triggerleft+", "axis:leftx-", "axis:rightx-", "button:dpleft", "button:x"}
